@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>CertificationDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Certification Date</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Certification__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Certification</label>
+        <referenceTo>Certification__c</referenceTo>
+        <relationshipLabel>Employee&apos;s Certifications</relationshipLabel>
+        <relationshipName>Employee_s_Certifications</relationshipName>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Employee__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee</label>
+        <referenceTo>Employee__c</referenceTo>
+        <relationshipLabel>Employee&apos;s Certifications</relationshipLabel>
+        <relationshipName>EmployeeCertifications</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>LastMaintenanceDate__c</fullName>
+        <externalId>false</externalId>
+        <formula>LastMaintenanceExam__r.ExamDate__c</formula>
+        <label>Last Maintenance Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>LastMaintenanceExam__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Last Maintenance Exam</label>
+        <referenceTo>MaintenanceExam__c</referenceTo>
+        <relationshipLabel>Employee&apos;s Certifications</relationshipLabel>
+        <relationshipName>EmployeesCertifications</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>LastMaintenanceRelease__c</fullName>
+        <externalId>false</externalId>
+        <formula>LastMaintenanceExam__r.ReleaseToUpdate__r.Name</formula>
+        <label>Last Maintenance Release</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NumberPendingMaintenance__c</fullName>
+        <description>Count the number of Exam maintenance related to the certification for this employee.</description>
+        <externalId>false</externalId>
+        <label>Number of pending maintenance</label>
+        <summaryFilterItems>
+            <field>MaintenanceExam__c.Passed__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </summaryFilterItems>
+        <summaryForeignKey>MaintenanceExam__c.EmployeesCertification__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>PrimaryRelease__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Certification Release</label>
+        <referenceTo>SalesforceRelease__c</referenceTo>
+        <relationshipLabel>Employee&apos;s Certifications (Release)</relationshipLabel>
+        <relationshipName>EmployeesCertifications</relationshipName>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Employee&apos;s Certification</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Employee__c</columns>
+        <columns>Certification__c</columns>
+        <columns>CertificationDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>EmpCer-{00000000}</displayFormat>
+        <label>Employee&apos;s Certification ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Employee&apos;s Certifications</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Employee__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Certification__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CertificationDate__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Employee__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Certification__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CertificationDate__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>
